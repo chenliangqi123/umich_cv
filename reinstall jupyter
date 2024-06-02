@@ -1,0 +1,5 @@
+pip3 install --upgrade --force-reinstall jupyter
+source ~/miniforge3/bin/activate
+source ~/anaconda3/bin/activate
+conda activate anaconda_environment
+python -m ipykernel install --user --name myenv --display-name "Python (myenv)"
