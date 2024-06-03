@@ -12,3 +12,25 @@ git add A1/cifar-10-python.tar.gz
 git commit -m "Move large files to Git LFS"
 5.	推送更改到远程仓库：
 git push origin master
+
+
+I managed to solve this issue by using Git LFS's migrate command. Here are the steps to resolve the problem:
+
+Step 1: Install Git LFS First, if you haven't already installed Git LFS, you can do so with the following command:
+
+git lfs install
+Step 2: Use git lfs migrate To move the large file into Git LFS, use the migrate command as follows:
+
+git lfs migrate import --include="src/data/indonesia-cities.json"
+This will rewrite your Git history to move the large file into LFS.
+
+Step 3: Add and Commit Changes Now you should stage and commit the .gitattributes file and the large file itself:
+
+git add .gitattributes src/data/indonesia-cities.json
+git commit -m "Migrate large file to Git LFS"
+Step 4: Push to Remote Repository Finally, push your changes to your remote repository:
+
+git push origin your-branch-name
+Note: Be cautious when using history rewriting commands like git lfs migrate, especially on shared repositories. Always backup your repository and inform your collaborators to re-clone after such changes.
+
+Source: https://docs.github.com/en/repositories/working-with-files/managing-large-files/moving-a-file-in-your-repository-to-git-large-file-storage
